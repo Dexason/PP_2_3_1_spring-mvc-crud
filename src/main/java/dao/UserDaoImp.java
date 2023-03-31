@@ -1,33 +1,35 @@
 package dao;
 
-import jakarta.persistence.EntityManagerFactory;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import model.User;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-    private final EntityManagerFactory em;
+    @PersistenceContext
+    private EntityManager em;
 
-    public UserDaoImp(EntityManagerFactory em) {
+    public UserDaoImp(EntityManager em) {
         this.em = em;
     }
 
     @Override
     public void add(User user) {
-        em.createEntityManager().persist(user);
+        em.persist(user);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> index() {
-        return em.createEntityManager().createQuery("from User").getResultList();
+        return em.createQuery("from User").getResultList();
     }
 
     @Override
     public User show(int id) {
-        return em.createEntityManager().find(User.class, id);
+        return em.find(User.class, id);
     }
 
     @Override
@@ -40,6 +42,6 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void remove(int id) {
-        em.createEntityManager().remove(show(id));
+        em.remove(show(id));
     }
 }
