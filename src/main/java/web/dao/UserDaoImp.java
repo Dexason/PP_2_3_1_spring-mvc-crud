@@ -1,9 +1,9 @@
-package dao;
+package web.dao;
 
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import model.User;
+import web.model.User;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -12,19 +12,14 @@ public class UserDaoImp implements UserDao {
     @PersistenceContext
     private EntityManager em;
 
-    public UserDaoImp(EntityManager em) {
-        this.em = em;
-    }
-
     @Override
     public void add(User user) {
         em.persist(user);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> index() {
-        return em.createQuery("from User").getResultList();
+        return em.createQuery("from User", User.class).getResultList();
     }
 
     @Override

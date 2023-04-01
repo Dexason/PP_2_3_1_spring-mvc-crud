@@ -1,4 +1,4 @@
-package config;
+package web.config;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.FilterRegistration;
@@ -11,28 +11,22 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import java.util.EnumSet;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return null;
+    }
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class<?>[]{
+                WebConfig.class
+        };
+    }
 
-        // Метод, указывающий на класс конфигурации
-        @Override
-        protected Class<?>[] getRootConfigClasses() {
-            return null;
-        }
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
 
-
-        // Добавление конфигурации, в которой инициализируем ViewResolver, для корректного отображения jsp.
-        @Override
-        protected Class<?>[] getServletConfigClasses() {
-            return new Class<?>[]{
-                    WebConfig.class
-            };
-        }
-
-
-        /* Данный метод указывает url, на котором будет базироваться приложение */
-        @Override
-        protected String[] getServletMappings() {
-            return new String[]{"/"};
-        }
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);

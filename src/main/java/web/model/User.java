@@ -1,5 +1,4 @@
-package model;
-
+package web.model;
 
 import jakarta.persistence.*;
 
@@ -31,6 +30,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

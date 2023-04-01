@@ -1,4 +1,4 @@
-package config;
+package web.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan("java")
+@ComponentScan("web")
 public class WebConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 

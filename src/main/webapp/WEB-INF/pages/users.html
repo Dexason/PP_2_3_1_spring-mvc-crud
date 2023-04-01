@@ -4,18 +4,27 @@
   <meta charset="UTF-8">
   <title>Users</title>
 </head>
+<style>table th, table td {padding: 5px;}</style>
 <body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
 
-<div th:each="user : ${users}">
-    <a th:text="${user.getId()}"></a>
-    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}"></a>
-    <a th:text="${user.getAge()}"></a>
-    <a th:text="${user.getEmail()}"></a>
-</div>
-
-<br/>
-<hr/>
-
+<tr th:each="user : ${users}">
+    <td th:text="${user.getId()}"></td>
+    <td> <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}"/></td>
+    <td th:text="${user.getAge()}"></td>
+    <td th:text="${user.getEmail()}"></td>
+</tr>
+    </tbody>
+</table>
 <a href="/users/new">Create new person</a>
 
 </body>
